@@ -78,14 +78,17 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 app.use(session({
   secret: process.env.SESSION_SECRET || "Secret",
   resave: false,
   saveUninitialized: true,
+  store: store,
   cookie: {
-    maxAge: 86400000,
-  },
-  store: store
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    sameSite: "none",
+    secure: true
+  }
 }));
 
 const swaggerOptions = {
