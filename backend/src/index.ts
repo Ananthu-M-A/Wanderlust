@@ -124,7 +124,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 const PORT = process.env.PORT || 4000;
 connectDb().then(() => {
   server.listen(PORT, () => {
-    logger.info(`✅ Server started on port ${PORT}`);
-    console.log(`✅ Server started on port ${PORT}`);
+    logger.info(`Server started on port ${PORT}`);
+    console.log(`Server started on port ${PORT}`);
   });
 });
