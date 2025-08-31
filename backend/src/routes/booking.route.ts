@@ -1,5 +1,5 @@
 import express from 'express';
-import verifyToken from "../middlewares/user.auth.middleware";
+import verifyToken from "../middlewares/auth.middleware";
 import { bookings, cancelBooking, checkout, downloadDoc, loadCheckoutResult } from '../controllers/booking.controller';
 const bookingRouter = express.Router();
 

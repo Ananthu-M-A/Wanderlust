@@ -1,5 +1,5 @@
 import express from 'express';
-import verifyAdminToken from '../middlewares/admin.auth.middleware';
+import verifyToken from '../middlewares/auth.middleware';
 import { blockHotel, createHotel, loadHotel, loadHotels, unblockHotel, updateHotel } from '../controllers/hotels.controller';
 import { body } from 'express-validator';
 import multer, { Multer } from 'multer';
@@ -11,7 +11,7 @@ const upload: Multer = multer({
     limits: { fileSize: 5 * 1024 * 1024 }
 });
 
-hotelsRouter.get('/', verifyAdminToken, loadHotels);
+hotelsRouter.get('/', verifyToken, loadHotels);
 hotelsRouter.post('/create-hotel',
     [
         body("name").notEmpty().withMessage('Name is required'),
@@ -22,13 +22,13 @@ hotelsRouter.post('/create-hotel',
         body("facilities").notEmpty().isArray().withMessage('Facilities is required'),
     ],
     upload.array("imageFiles", 3),
-    verifyAdminToken, createHotel);
-hotelsRouter.get('/:hotelId', verifyAdminToken, loadHotel);
+    verifyToken, createHotel);
+hotelsRouter.get('/:hotelId', verifyToken, loadHotel);
 hotelsRouter.put('/:hotelId/update',
     upload.array("imageFiles"),
-    verifyAdminToken, updateHotel);
-hotelsRouter.put('/:hotelId/block', verifyAdminToken, blockHotel);
-hotelsRouter.put('/:hotelId/unblock', verifyAdminToken, unblockHotel);
+    verifyToken, updateHotel);
+hotelsRouter.put('/:hotelId/block', verifyToken, blockHotel);
+hotelsRouter.put('/:hotelId/unblock', verifyToken, unblockHotel);
 
 
 export default hotelsRouter;

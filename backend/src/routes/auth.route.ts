@@ -1,6 +1,6 @@
 import express from 'express';
 import { userRegistration, verifyRegistration, userLogin, userAuthorization, userLogout, loadUser, resetPassword, verifyResetPassword } from '../controllers/auth.controller';
-import verifyToken from '../middlewares/user.auth.middleware';
+import verifyToken from '../middlewares/auth.middleware';
 import { validateLogin } from '../utils/FormValidator';
 import { registerSchema, validateZod } from '../utils/zodValidator';
 

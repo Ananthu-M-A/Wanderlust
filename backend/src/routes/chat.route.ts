@@ -1,5 +1,5 @@
 import express from 'express';
-import verifyToken from '../middlewares/user.auth.middleware';
+import verifyToken from '../middlewares/auth.middleware';
 import { startChat } from '../controllers/chat.controller';
 
 const liveChatRouter = express.Router();
