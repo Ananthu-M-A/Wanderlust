@@ -15,7 +15,7 @@ const LogoutButton = ({ isAdmin }: Props) => {
     const mutationAdmin = useMutation({
         mutationFn: apiClient.adminLogout,
         onSuccess: async () => {
-            await queryClient.refetchQueries({ queryKey: ["validateToken"] });
+            await queryClient.refetchQueries({ queryKey: ["validateAdminToken"] });
             showToast({ message: "Logged out Successfully!", type: "SUCCESS" });
             navigate("/adminLogin");
         },
