@@ -57,6 +57,7 @@ store.on('error', function (error: any) {
 
 
 const app = express();
+app.set("trust proxy", 1);
 const server = http.createServer(app);
 messageSocket(server);
 
@@ -121,8 +122,9 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 const PORT = process.env.PORT || 4000;
-server.listen(PORT, () => {
-  logger.info(`Server started on port ${PORT}`);
-  console.log(`Server started on port ${PORT}`);
+connectDb().then(() => {
+  server.listen(PORT, () => {
+    logger.info(`✅ Server started on port ${PORT}`);
+    console.log(`✅ Server started on port ${PORT}`);
+  });
 });
-
